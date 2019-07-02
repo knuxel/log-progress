@@ -3,7 +3,7 @@
 ### Code
 Just copy and paste it into your project:
 ```python
-def log_progress(sequence, every=None, size=None, name='Items'):
+def log_progress(sequence, every=None, size=None, name='Items', font_color='black'):
     from ipywidgets import IntProgress, HTML, VBox
     from IPython.display import display
 
@@ -36,13 +36,13 @@ def log_progress(sequence, every=None, size=None, name='Items'):
         for index, record in enumerate(sequence, 1):
             if index == 1 or index % every == 0:
                 if is_iterator:
-                    label.value = '{name}: {index} / ?'.format(
+                    label.value = '<font color=\'' + font_color + '\'>{name}: {index} / ?</font>'.format(
                         name=name,
                         index=index
                     )
                 else:
                     progress.value = index
-                    label.value = u'{name}: {index} / {size}'.format(
+                    label.value = u'<font color=\'' + font_color + '\'>{name}: {index} / {size}</font>'.format(
                         name=name,
                         index=index,
                         size=size
@@ -54,7 +54,7 @@ def log_progress(sequence, every=None, size=None, name='Items'):
     else:
         progress.bar_style = 'success'
         progress.value = index
-        label.value = "{name}: {index}".format(
+        label.value = '<font color=\'' + font_color + '\'>{name}: {index}</font>'.format(
             name=name,
             index=str(index or '?')
         )
